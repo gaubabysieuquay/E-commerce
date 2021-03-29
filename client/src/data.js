@@ -1,0 +1,55 @@
+const data = {
+  products: [
+    {
+      id: "1",
+      name: "Box set Harry Potter",
+      author: "J.K. Rowling",
+      category: "Novels",
+      image: "harry-potter.png",
+      price: 120,
+      countInStock: 10,
+      description: "high quality product",
+    },
+    {
+      id: "2",
+      name: "Chronicle of Narnia",
+      author: "C. S. Lewis",
+      category: "Novels",
+      image: "harry-potter.png",
+      price: 100,
+      countInStock: 20,
+      description: "high quality product",
+    },
+    {
+      id: "3",
+      name: "Clean Code",
+      author: "Robert Martin",
+      category: "Science",
+      image: "harry-potter.png",
+      price: 220,
+      countInStock: 0,
+      description: "high quality product",
+    },
+    {
+      id: "4",
+      name: "Doraemon",
+      author: "Fujiko F. Fuji",
+      category: "Comic",
+      image: "harry-potter.png",
+      price: 78,
+      countInStock: 15,
+      description: "high quality product",
+    },
+    {
+      id: "5",
+      name: "Conan",
+      category: "Comic",
+      image: "harry-potter.png",
+      price: 78,
+      countInStock: 15,
+      description: "high quality product",
+    },
+  ],
+};
+
+export default data;
