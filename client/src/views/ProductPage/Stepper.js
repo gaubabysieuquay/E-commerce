@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles, Step, Stepper, StepLabel } from "@material-ui/core";
-import ShippingAddressPage from "./ShippingAddressPage";
-import GridContainer from "components/Grid/GridContainer";
 
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+
+import PaymentMethods from "./PaymentMethods";
+import ShippingAddressPage from "./ShippingAddressPage";
+import PlaceOrder from "./PlaceOrder";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,14 +20,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
   layout: {
-    width: "40%",
-    margin: "auto",
+    width: "100%",
   },
 }));
 
-const Steppers = () => {
+const Steppers = ({ stepValue }) => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(stepValue || 1);
 
   const getSteps = () => {
     return ["Sign In", "Shipping", "Payment", "Place order"];
@@ -48,27 +51,46 @@ const Steppers = () => {
           />
         );
       case 2:
-        return "This is the bit I really care about!";
+        return (
+          <PaymentMethods
+            handleNext={handleNext}
+            steps={steps}
+            activeStep={activeStep}
+          />
+        );
+      case 3:
+        return (
+          <PlaceOrder
+            handleNext={handleNext}
+            steps={steps}
+            activeStep={activeStep}
+          />
+        );
       default:
         return "Unknown step";
     }
   };
 
   return (
-    <GridContainer className={classes.layout} direction="row" alignItems="center" justify="center">
-      <Stepper className={classes.root} activeStep={activeStep}>
-        {steps.map((label) => {
-          const stepProps = {};
-          const labelProps = {};
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      {getStepContent(activeStep)}
-    </GridContainer>
+    <>
+      <GridContainer direction="row" alignItems="center" justify="center">
+        <GridItem>
+          <Stepper className={classes.root} activeStep={activeStep}>
+            {steps.map((label) => {
+              const stepProps = {};
+              const labelProps = {};
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps}>{label}</StepLabel>
+                </Step>
+              );
+            })}
+          </Stepper>
+        </GridItem>
+        {getStepContent(activeStep)}
+      </GridContainer>
+      
+    </>
   );
 };
 

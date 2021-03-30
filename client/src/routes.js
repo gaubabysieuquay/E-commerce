@@ -24,9 +24,12 @@ const routes = (isLoggedIn) => [
   { path: "product/:id", element: <ProductPage /> },
   {
     path: "shipping",
-    element: isLoggedIn ? <Shipping /> : <Navigate to="/signin" />,
+    element: isLoggedIn ? (
+      <Shipping stepValue={1} />
+    ) : (
+      <Navigate to="/signin" />
+    ),
   },
-  { path: "payment" },
 ];
 
 export default routes;
