@@ -87,9 +87,8 @@ const Steppers = ({ stepValue }) => {
             })}
           </Stepper>
         </GridItem>
-        {getStepContent(activeStep)}
       </GridContainer>
-      
+      {getStepContent(activeStep)}
     </>
   );
 };

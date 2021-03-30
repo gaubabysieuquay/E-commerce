@@ -17,6 +17,7 @@ import * as yup from "yup";
 
 import { savePaymentMethod } from "actions/cartActions";
 import { useNavigate } from "react-router";
+import GridContainer from "components/Grid/GridContainer";
 
 const schema = yup.object().shape({
   paymentMethod: yup.string().required("Required"),
@@ -41,33 +42,35 @@ const PaymentMethods = ({ activeStep, steps, handleNext }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl error={Boolean(errors.paymentMethod)} component="fieldset">
-        <FormLabel component="legend">Payment Methods </FormLabel>
-        <Controller
-          as={
-            <RadioGroup aria-label="Payment Method" ref={register}>
-              <FormControlLabel
-                value="Paypal"
-                control={<Radio />}
-                label="Paypal"
-              />
-              <FormControlLabel
-                value="Stripe"
-                control={<Radio />}
-                label="Stripe"
-              />
-            </RadioGroup>
-          }
-          name="paymentMethod"
-          control={control}
-        />
-        <FormHelperText>{errors.paymentMethod?.message}</FormHelperText>
-      </FormControl>
-      <Button fullWidth variant="contained" type="submit">
-        {activeStep === steps.length - 1 ? "Finish" : "Continue"}
-      </Button>
-    </form>
+    <GridContainer alignItems="center" justify="center">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl error={Boolean(errors.paymentMethod)} component="fieldset">
+          <FormLabel component="legend">Payment Methods </FormLabel>
+          <Controller
+            as={
+              <RadioGroup aria-label="Payment Method" ref={register}>
+                <FormControlLabel
+                  value="Paypal"
+                  control={<Radio />}
+                  label="Paypal"
+                />
+                <FormControlLabel
+                  value="Stripe"
+                  control={<Radio />}
+                  label="Stripe"
+                />
+              </RadioGroup>
+            }
+            name="paymentMethod"
+            control={control}
+          />
+          <FormHelperText>{errors.paymentMethod?.message}</FormHelperText>
+        </FormControl>
+        <Button fullWidth variant="contained" type="submit">
+          {activeStep === steps.length - 1 ? "Finish" : "Continue"}
+        </Button>
+      </form>
+    </GridContainer>
   );
 };
 export default PaymentMethods;
