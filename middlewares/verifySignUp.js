@@ -1,5 +1,5 @@
 const db = require("../models");
-const ROLES = db.ROLES;
+const jwt = require("jsonwebtoken");
 const User = db.User;
 
 //Check username va email khi req co ton tai ?
@@ -38,6 +38,7 @@ isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
     const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
+    
     jwt.verify(
       token,
       process.env.JWT_SECRET || "somethingsecret",

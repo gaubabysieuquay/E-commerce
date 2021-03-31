@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
 // react components for routing our app without refresh
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // @material-ui/core components
 import {
   Card,
@@ -15,7 +13,6 @@ import {
   Typography,
   makeStyles,
   Button,
-  TextField,
 } from "@material-ui/core";
 // @material-ui/icons
 // core components
@@ -65,7 +62,7 @@ const PlaceOrder = () => {
 
   useEffect(() => {
     if (success) {
-      navigate(`/order/`);
+      navigate(`/order/${order.id}`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [success, dispatch, navigate]);

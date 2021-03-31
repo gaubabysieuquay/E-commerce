@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-// react components for routing our app without refresh
-import { useNavigate } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core";
-// @material-ui/icons
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -17,17 +14,10 @@ import Stepper from "views/ProductPage/Stepper";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 
 import styles from "assets/jss/material-kit-react/views/components.js";
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(styles);
 
-const Shipping = (props, { stepValue }) => {
-  const navigate = useNavigate();
-  const userSignIn = useSelector((state) => state.userSignIn);
-  const { userInfo } = userSignIn;
-  if (!userInfo) {
-    navigate("/signin");
-  }
+const Shipping = (props) => {
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -46,7 +36,7 @@ const Shipping = (props, { stepValue }) => {
       <Parallax image={require("assets/img/bg4.jpg")}>
         <div className={classes.container}>
           <GridContainer>
-            <GridItem xs={12}>
+            <GridItem>
               <div className={classes.brand}>
                 <h1 className={classes.title}>Material Kit React.</h1>
                 <h3 className={classes.subtitle}>
@@ -58,7 +48,7 @@ const Shipping = (props, { stepValue }) => {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <Stepper stepValue={stepValue} />
+        <Stepper />
       </div>
       <Footer />
     </div>

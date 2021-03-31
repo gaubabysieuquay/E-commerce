@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 require("./routes/user")(app);
 require("./routes/product")(app);
+require("./routes/order")(app);
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

@@ -17,17 +17,29 @@ exports.create = expressAsyncHandler(async (req, res) => {
       totalPrice: req.body.totalPrice,
       user: req.user.id,
     };
-    console.log(orderData)
+
     const createdOrder = await Order.create(orderData);
     res.status(201).send({ message: "New Order Created", order: createdOrder });
   }
 });
 
-exports.findAll = expressAsyncHandler(async (req, res) => {
-  const orders = await Order.findAll({
-    where: condition,
-    include: [
-      { model: db.User },
-    ],
+exports.findOne = expressAsyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const order = await Order.findOne({
+    where: { id: id },
   });
+  if (order) {
+    res.send(order);
+  } else {
+    res.status(404).send({ message: "Order Not Found" });
+  }
+});
+
+exports.findAll = expressAsyncHandler(async (req, res) => {
+  const order = await Order.findAll({});
+  if (order) {
+    res.send(order[1].orderItems);
+  } else {
+    res.status(404).send({ message: "Order Not Found" });
+  }
 });

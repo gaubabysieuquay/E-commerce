@@ -43,12 +43,7 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.User.belongsTo(db.Order, {
-  onDelete: "cascade",
-  foreignKey: "user",
-  targetKey: "id",
-});
-db.Order.hasMany(db.User, {
+db.User.hasMany(db.Order, {
   onDelete: "cascade",
   foreignKey: "user",
   targetKey: "id",

@@ -8,6 +8,8 @@ import ProductPage from "views/ProductPage/ProductPage.js";
 import CartPage from "views/ProductPage/CartPage.js";
 import RegisterPage from "views/AuthPage/RegisterPage";
 import Shipping from "views/ProductPage/Shipping";
+import OrderPage from "views/ProductPage/Order.js";
+
 
 const routes = (isLoggedIn) => [
   { path: "/", element: <Components /> },
@@ -24,12 +26,9 @@ const routes = (isLoggedIn) => [
   { path: "product/:id", element: <ProductPage /> },
   {
     path: "shipping",
-    element: isLoggedIn ? (
-      <Shipping stepValue={1} />
-    ) : (
-      <Navigate to="/signin" />
-    ),
+    element: isLoggedIn ? <Shipping /> : <Navigate to="/signin" />,
   },
+  { path: "order/:id", element: <OrderPage /> },
 ];
 
 export default routes;

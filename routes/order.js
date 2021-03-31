@@ -5,11 +5,11 @@ module.exports = (app) => {
   const { isAuth } = require("../middlewares/verifySignUp");
   router.use(cors());
 
-  router.post("/", orders.create, isAuth);
+  router.post("/", isAuth, orders.create);
 
-  //router.get("/", orders.findAll);
+  router.get("/", orders.findAll);
 
-  //router.get("/:id", orders.findOne);
+  router.get("/:id", isAuth, orders.findOne);
 
   //router.get("/name", products.findAllByName)
 

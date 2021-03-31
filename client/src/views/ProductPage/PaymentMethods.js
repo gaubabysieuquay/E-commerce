@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //@material-ui/core
 import {
   Button,
@@ -16,7 +16,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { savePaymentMethod } from "actions/cartActions";
-import { useNavigate } from "react-router";
 import GridContainer from "components/Grid/GridContainer";
 
 const schema = yup.object().shape({
@@ -24,7 +23,6 @@ const schema = yup.object().shape({
 });
 
 const PaymentMethods = ({ activeStep, steps, handleNext }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const initialFormState = {
@@ -37,7 +35,7 @@ const PaymentMethods = ({ activeStep, steps, handleNext }) => {
   });
 
   const onSubmit = (values) => {
-    dispatch(savePaymentMethod(values));
+    dispatch(savePaymentMethod(values.paymentMethod));
     handleNext();
   };
 
