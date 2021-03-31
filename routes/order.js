@@ -1,14 +1,15 @@
 module.exports = (app) => {
-  const products = require("../controllers/product");
+  const orders = require("../controllers/order");
   const cors = require("cors");
   const router = require("express").Router();
+  const { isAuth } = require("../middlewares/verifySignUp");
   router.use(cors());
 
-  //router.post("/", products.create);
+  router.post("/", orders.create, isAuth);
 
-  router.get("/", products.findAll);
+  //router.get("/", orders.findAll);
 
-  router.get("/:id", products.findOne);
+  //router.get("/:id", orders.findOne);
 
   //router.get("/name", products.findAllByName)
 
@@ -18,5 +19,5 @@ module.exports = (app) => {
 
   //router.delete("/", products.deleteAll);
 
-  app.use("/api/products", router);
+  app.use("/api/orders", router);
 };

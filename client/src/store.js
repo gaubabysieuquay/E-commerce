@@ -1,4 +1,5 @@
 import { cartReducer } from "reducer/cartReducer";
+import { orderCreateReducer } from "reducer/orderReducer";
 import {
   productListReducer,
   productDetailsReducer,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   cart: cartReducer,
   userSignIn: userSignInReducer,
   userRegister: userRegisterReducer,
+  orderCreate: orderCreateReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

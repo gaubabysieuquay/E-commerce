@@ -21,10 +21,13 @@ import {
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
+import Progress from "components/Progress/Progress.js";
 import Alert from "components/Alert/Alert.js";
 
 import styles from "assets/jss/material-kit-react/views/components.js";
 import { useDispatch, useSelector } from "react-redux";
+import { createOrder } from "actions/orderActions";
+import { ORDER_CREATE_RESET } from "constants/orderConstants";
 
 const useStyles = makeStyles({
   ...styles,
@@ -41,7 +44,12 @@ const useStyles = makeStyles({
 
 const PlaceOrder = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { loading, success, error, order } = orderCreate;
+
   const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
   cart.itemsPrice = toPrice(
     cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
@@ -50,9 +58,18 @@ const PlaceOrder = () => {
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
-  console.log(cart.cartItems);
+  const dispatch = useDispatch();
+  const placeOrderHandler = () => {
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+  };
 
-  const placeOrderHandler = () => {};
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/`);
+      dispatch({ type: ORDER_CREATE_RESET });
+    }
+  }, [success, dispatch, navigate]);
+
   return (
     <GridContainer spacing={8}>
       <GridItem xs={12} sm={8} md={8}>
@@ -159,6 +176,9 @@ const PlaceOrder = () => {
             </Button>
           </CardActions>
         </Card>
+        <br></br>
+        {loading && <Progress></Progress>}
+        {error && <Alert severity="error">{error}</Alert>}
       </GridItem>
     </GridContainer>
   );
