@@ -65,7 +65,7 @@ const PlaceOrder = () => {
       navigate(`/order/${order.id}`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
-  }, [success, dispatch, navigate]);
+  }, [success, dispatch, navigate, order]);
 
   return (
     <GridContainer spacing={8}>

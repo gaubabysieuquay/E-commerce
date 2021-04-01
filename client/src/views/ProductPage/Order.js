@@ -51,8 +51,6 @@ const Order = (props) => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
-  console.log(order.orderItems)
-
   useEffect(() => {
     dispatch(detailsOrder(id));
   }, [id, dispatch]);
@@ -89,7 +87,7 @@ const Order = (props) => {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <Typography variant="h2">Order {order.id}</Typography>
+        <Typography variant="h2">Order {order.order.id}</Typography>
         <GridContainer spacing={8}>
           <GridItem xs={12} sm={8} md={8}>
             <List component="ul" aria-label="place order">
@@ -118,7 +116,7 @@ const Order = (props) => {
                       Payment
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
-                      Method: {order.paymentMethod.paymentMethod}
+                      Method: {order.order.paymentMethod}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -181,16 +179,16 @@ const Order = (props) => {
                   Order Summary
                 </Typography>
                 <Typography variant="body2" color="primary" gutterBottom>
-                  Items: {order.itemsPrice.toFixed(2)}
+                  Items: {order.order.itemsPrice.toFixed(2)}
                 </Typography>
                 <Typography variant="body2" color="primary" gutterBottom>
-                  Shipping Address: {order.shippingPrice}
+                  Shipping Address: {order.order.shippingPrice.toFixed(2)}
                 </Typography>
                 <Typography variant="body2" color="primary" gutterBottom>
-                  Tax: {order.taxPrice.toFixed(2)}
+                  Tax: {order.order.taxPrice.toFixed(2)}
                 </Typography>
                 <Typography variant="body1" color="primary" gutterBottom>
-                  Order Total: {order.totalPrice}
+                  Order Total: {order.order.totalPrice.toFixed(2)}
                 </Typography>
               </CardContent>
             </Card>

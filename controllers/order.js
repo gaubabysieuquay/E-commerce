@@ -29,7 +29,11 @@ exports.findOne = expressAsyncHandler(async (req, res) => {
     where: { id: id },
   });
   if (order) {
-    res.send(order);
+    res.send({
+      order: order,
+      orderItems: JSON.parse(order.orderItems),
+      shippingAddress: JSON.parse(order.shippingAddress),
+    });
   } else {
     res.status(404).send({ message: "Order Not Found" });
   }
@@ -38,7 +42,10 @@ exports.findOne = expressAsyncHandler(async (req, res) => {
 exports.findAll = expressAsyncHandler(async (req, res) => {
   const order = await Order.findAll({});
   if (order) {
-    res.send(order[1].orderItems);
+    res.send({
+      order: order,
+      orderItems: JSON.parse(order.orderItems),
+    });
   } else {
     res.status(404).send({ message: "Order Not Found" });
   }
