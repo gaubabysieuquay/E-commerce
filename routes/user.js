@@ -14,5 +14,7 @@ module.exports = (app) => {
     controller.register
   );
 
+  router.get("/:id", controller.findOne);
+
   app.use("/api/users", router);
 };

@@ -77,17 +77,17 @@ const Order = (props) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h1 className={classes.title}>Material Kit React.</h1>
-                <h3 className={classes.subtitle}>
-                  A Badass Material-UI Kit based on Material Design.
-                </h3>
+                <h1 className={classes.title}>Order</h1>
+                <h3 className={classes.subtitle}>A online shop</h3>
               </div>
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <Typography variant="h2">Order {order.order.id}</Typography>
+        <GridContainer direction="row" justify="center">
+          <Typography variant="h4">Order {order.order.id}</Typography>
+        </GridContainer>
         <GridContainer spacing={8}>
           <GridItem xs={12} sm={8} md={8}>
             <List component="ul" aria-label="place order">

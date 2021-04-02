@@ -42,3 +42,14 @@ exports.register = expressAsyncHandler(async (req, res) => {
     token: generateToken(createUser),
   });
 });
+
+exports.findOne = expressAsyncHandler(async (req, res) => {
+  const user = await User.findOne({
+    where: { id: req.params.id },
+  });
+  if (user) {
+    res.send(user);
+  } else {
+    res.status(404).send({ message: "User Not Found" });
+  }
+});

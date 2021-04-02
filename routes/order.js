@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   router.get("/:id", isAuth, orders.findOne);
 
-  //router.get("/name", products.findAllByName)
+  router.get("/order/mine", isAuth, orders.findOrderHistory);
 
   //router.put("/:id", products.update);
 

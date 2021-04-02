@@ -1,7 +1,13 @@
-const sequelize = require("sequelize");
 const expressAsyncHandler = require("express-async-handler");
 const db = require("../models");
 const Order = db.Order;
+
+exports.findOrderHistory = expressAsyncHandler(async (req, res) => {
+  const orders = await Order.findAll({
+    where: { user: req.user.id },
+  });
+  res.send(orders);
+});
 
 exports.create = expressAsyncHandler(async (req, res) => {
   if (req.body.orderItems.length === 0) {

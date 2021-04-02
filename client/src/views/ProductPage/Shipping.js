@@ -38,10 +38,8 @@ const Shipping = (props) => {
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
-                <h1 className={classes.title}>Material Kit React.</h1>
-                <h3 className={classes.subtitle}>
-                  A Badass Material-UI Kit based on Material Design.
-                </h3>
+                <h1 className={classes.title}>Order History</h1>
+                <h3 className={classes.subtitle}>A online shop</h3>
               </div>
             </GridItem>
           </GridContainer>
