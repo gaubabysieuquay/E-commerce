@@ -14,7 +14,10 @@ import OrderHistoryPage from "views/ProfilePage/OrderHistoryPage";
 const routes = (isLoggedIn) => [
   { path: "/", element: <Components /> },
   { path: "landing-page", element: <LandingPage /> },
-  { path: "profile-page", element: <ProfilePage /> },
+  {
+    path: "profile",
+    element: isLoggedIn ? <ProfilePage /> : <Navigate to="/signin" />,
+  },
   { path: "signin", element: <LoginPage /> },
   { path: "register", element: <RegisterPage /> },
   { path: "cart", element: <CartPage /> },

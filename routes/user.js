@@ -1,3 +1,5 @@
+const { isAuth } = require("../middlewares/verifySignUp");
+
 //Authorization
 module.exports = (app) => {
   const { verifySignUp, generateToken } = require("../middlewares");
@@ -15,6 +17,8 @@ module.exports = (app) => {
   );
 
   router.get("/:id", controller.findOne);
+
+  router.put("/", isAuth, controller.update);
 
   app.use("/api/users", router);
 };

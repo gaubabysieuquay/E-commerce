@@ -60,8 +60,6 @@ const OrderHistoryPage = (props) => {
     dispatch(listOrderMine());
   }, [dispatch]);
 
-  console.log(orders);
-
   return (
     <div>
       <Header

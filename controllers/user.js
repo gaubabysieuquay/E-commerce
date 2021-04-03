@@ -53,3 +53,24 @@ exports.findOne = expressAsyncHandler(async (req, res) => {
     res.status(404).send({ message: "User Not Found" });
   }
 });
+
+exports.update = expressAsyncHandler(async (req, res) => {
+  const userData = {
+    name: req.body.name,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8),
+  };
+  console.log(userData)
+  const updatedUser = await User.update(userData, {
+    where: {
+      id: req.user.id,
+    },
+  });
+  res.send({
+    id: updatedUser.id,
+    name: updatedUser.name,
+    email: updatedUser.email,
+    isAdmin: updatedUser.isAdmin,
+    token: generateToken(updatedUser),
+  });
+});

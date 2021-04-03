@@ -8,8 +8,12 @@ import {
   productListReducer,
   productDetailsReducer,
 } from "reducer/productReducers";
-import { userDetailsReducer } from "reducer/userReducer";
-import { userSignInReducer, userRegisterReducer } from "reducer/userReducer";
+import {
+  userSignInReducer,
+  userRegisterReducer,
+  userDetailsReducer,
+  userUpdateProfileReducer,
+} from "reducer/userReducer";
 import { compose, applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 
@@ -36,6 +40,7 @@ const reducer = combineReducers({
   userSignIn: userSignInReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderMineList: orderMineListReducer,

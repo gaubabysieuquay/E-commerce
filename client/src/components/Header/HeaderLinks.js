@@ -78,6 +78,9 @@ const HeaderLinks = (props) => {
             }}
             buttonIcon={Person}
             dropdownList={[
+              <Link to="/profile" className={classes.dropdownLink}>
+                Profile
+              </Link>,
               <Link to="/orderhistory" className={classes.dropdownLink}>
                 Order History
               </Link>,
